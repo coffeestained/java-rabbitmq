@@ -1,0 +1,8 @@
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=
+spring.rabbitmq.password=
+
+rabbitmq.queue.name=
+rabbitmq.exchange.name=
+rabbitmq.routing.key=
