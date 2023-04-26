@@ -3,6 +3,8 @@ spring.rabbitmq.port=5672
 spring.rabbitmq.username=
 spring.rabbitmq.password=
 
+restapi.version=
+
 rabbitmq.queue.name=
 rabbitmq.exchange.name=
 rabbitmq.routing.key=
