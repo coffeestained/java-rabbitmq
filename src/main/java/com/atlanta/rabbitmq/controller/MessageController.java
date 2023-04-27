@@ -1,14 +1,11 @@
-package com.atlanta.rabbitmq.producer.controller;
+package com.atlanta.rabbitmq.controller;
 
-import com.atlanta.rabbitmq.producer.producer.RabbitMQProducer;
+import com.atlanta.rabbitmq.producer.RabbitMQProducer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/${restapi.version}")
+@RequestMapping("")
 public class MessageController {
 
     private RabbitMQProducer producer;
@@ -23,4 +20,5 @@ public class MessageController {
         producer.sendMessage(message);
         return ResponseEntity.ok("Message sent to RabbitMQ ...");
     }
+
 }

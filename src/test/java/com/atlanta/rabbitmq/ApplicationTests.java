@@ -1,4 +1,4 @@
-package com.atlanta.rabbitmq.producer;
+package com.atlanta.rabbitmq;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

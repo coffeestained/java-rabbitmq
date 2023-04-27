@@ -1,4 +1,4 @@
-package com.atlanta.rabbitmq.producer;
+package com.atlanta.rabbitmq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

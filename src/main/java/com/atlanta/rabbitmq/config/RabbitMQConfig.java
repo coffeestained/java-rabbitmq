@@ -1,4 +1,4 @@
-package com.atlanta.rabbitmq.producer.config;
+package com.atlanta.rabbitmq.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Value;

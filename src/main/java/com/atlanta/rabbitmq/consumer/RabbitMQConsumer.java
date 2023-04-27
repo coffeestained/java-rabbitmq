@@ -1,4 +1,4 @@
-package com.atlanta.rabbitmq.producer.consumer;
+package com.atlanta.rabbitmq.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
