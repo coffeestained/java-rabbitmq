@@ -35,8 +35,8 @@ public class RabbitQueueServiceImpl implements RabbitQueueService {
     @Override
     public void addMessageToQueue(String message, String queueName) {
         log.info(this.rabbitListenerEndpointRegistry.getListenerContainerIds());
-        log.info(String.format("Message sent -> %s",  message));
-        rabbitTemplate.convertAndSend(exchangeName, routingKey, message);
+        log.info(String.format("Message sent to MQ -> %s",  message));
+        rabbitTemplate.convertAndSend(exchangeName, queueName, message);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RabbitQueueServiceImpl implements RabbitQueueService {
                 queueName,
                 Binding.DestinationType.QUEUE,
                 exchangeName,
-                routingKey,
+                queueName,
                 null
         );
         rabbitAdmin.declareQueue(queue);

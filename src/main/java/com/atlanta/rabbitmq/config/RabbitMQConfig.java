@@ -85,7 +85,7 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
         endpoint.setId(exchangeName);
         endpoint.setMessageListener((message) -> {
             byte[] rabbitMQMessage = message.getBody();
-            log.info(String.format("Message sent ok -> %s",  new String(rabbitMQMessage)));
+            log.info(String.format("Message receieved from MQ -> %s",  new String(rabbitMQMessage)));
         });
 
         registry.registerListenerContainer(endpoint, factory, true);
