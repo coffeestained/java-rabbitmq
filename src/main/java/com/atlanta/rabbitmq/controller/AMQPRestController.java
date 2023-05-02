@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v${rabbitmq.api.version}/amqp")
 public class AMQPRestController {
 
-    @Value("${rabbitmq.queue.name}")
-    private String queueName;
-
     private RabbitQueueServiceImpl rabbitQueueServiceImpl;
 
     public AMQPRestController(RabbitQueueServiceImpl rabbitQueueServiceImpl) {
