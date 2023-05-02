@@ -21,13 +21,24 @@ As per usual, feel free to yoink anything. All credits & licensing agreements in
 #### Add Message to Queue
 
 ```http
-  GET /api/v1/amqp/message
+  GET /api/v1/amqp/addMessage
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `message`      | `string` | **Required**. Message to be queued |
 | `queueName`      | `string` | **Required**. Queue name to receive message |
+
+#### Get Message(s) from Queue
+
+```http
+  GET /api/v1/amqp/getMessage
+```
+
+| Parameter   | Type     | Description                                     |
+|:------------| :------- |:------------------------------------------------|
+| `queueName` | `string` | **Required**. Queue name to retrieve message(s) |
+| `count`     | `string` | **Optional**. Defaults to 1                     |
 
 ## Installation
 

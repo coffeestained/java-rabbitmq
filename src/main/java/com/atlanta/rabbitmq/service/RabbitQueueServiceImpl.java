@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -33,8 +34,13 @@ public class RabbitQueueServiceImpl implements RabbitQueueService {
     private String routingKey;
 
     @Override
+    public Message getMessagesFromQueue(String queueName, Integer count) {
+        log.info(String.format("Getting %c messages from queue -> %s", count, queueName));
+        return rabbitTemplate.receive(queueName);
+    }
+
+    @Override
     public void addMessageToQueue(String message, String queueName) {
-        log.info(this.rabbitListenerEndpointRegistry.getListenerContainerIds());
         log.info(String.format("Message sent to MQ -> %s",  message));
         rabbitTemplate.convertAndSend(exchangeName, queueName, message);
     }

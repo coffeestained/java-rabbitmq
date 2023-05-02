@@ -1,6 +1,5 @@
 package com.atlanta.rabbitmq.config;
 
-import com.atlanta.rabbitmq.service.RabbitQueueServiceImpl;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;

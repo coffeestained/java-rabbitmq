@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/v${rabbitmq.api.version}/amqp")
 public class AMQPRestController {
 
-    private RabbitQueueServiceImpl rabbitQueueServiceImpl;
+    private final RabbitQueueServiceImpl rabbitQueueServiceImpl;
 
     public AMQPRestController(RabbitQueueServiceImpl rabbitQueueServiceImpl) {
         this.rabbitQueueServiceImpl = rabbitQueueServiceImpl;
@@ -25,11 +27,19 @@ public class AMQPRestController {
         return ResponseEntity.ok("Listening to Queue ...");
     }
 
-    // http://localhost:8080/api/v1/amqp/publish?message=hello&queueName=queueName
-    @GetMapping("/publish")
-    public ResponseEntity<String> publishMessage(@RequestParam("message") String message, @RequestParam("queueName") String queueName) {
+    // http://localhost:8080/api/v1/amqp/addMessage?message=hello&queueName=queueName
+    @GetMapping("/addMessage")
+    public ResponseEntity<String> addMessage(@RequestParam("message") String message, @RequestParam("queueName") String queueName) {
         this.rabbitQueueServiceImpl.addMessageToQueue(message, queueName);
         return ResponseEntity.ok("Message sent to RabbitMQ ...");
+    }
+
+    // http://localhost:8080/api/v1/amqp/getMessage?queueName=queueName
+    @GetMapping("/getMessage")
+    public ResponseEntity<String> getMessage(@RequestParam("queueName") String queueName, @RequestParam("count") Optional<Integer> count) {
+        var message = this.rabbitQueueServiceImpl.getMessagesFromQueue(queueName, count.orElse(1));
+        byte[] body = message.getBody();
+        return ResponseEntity.ok(new String(body));
     }
 
 }

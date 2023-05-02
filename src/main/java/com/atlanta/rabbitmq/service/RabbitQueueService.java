@@ -1,6 +1,10 @@
 package com.atlanta.rabbitmq.service;
 
+import org.springframework.amqp.core.Message;
+
 public interface RabbitQueueService {
+
+    Message getMessagesFromQueue(String queueName, Integer count);
 
     void addMessageToQueue(String message, String queueName);
 
