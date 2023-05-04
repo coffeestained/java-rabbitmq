@@ -1,36 +1,15 @@
 package com.atlanta.rabbitmq.config;
 
-import org.springframework.context.annotation.Bean;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.WebSocketSession;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.socket.config.annotation.*;
-import org.springframework.web.socket.handler.AbstractWebSocketHandler;
-
-class SocketHandler extends AbstractWebSocketHandler {
-
-    @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) {
-        System.out.println(String.format("Message from client: %s", message));
-    }
-
-}
 
 @Configuration
+@Log4j2
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer, WebSocketConfigurer {
-
-    @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler(), "/websocket");
-    }
-
-    @Bean
-    public WebSocketHandler webSocketHandler() {
-        return new SocketHandler();
-    }
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -41,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer, WebSoc
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // the endpoint for websocket connections
-        registry.addEndpoint("/stomp");
+        registry.addEndpoint("/websocket");
     }
 
 }
