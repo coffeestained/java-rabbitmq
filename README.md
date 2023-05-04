@@ -40,6 +40,17 @@ As per usual, feel free to yoink anything. All credits & licensing agreements in
 | `queueName` | `string` | **Required**. Queue name to retrieve message(s) |
 | `count`     | `string` | **Optional**. Defaults to 1                     |
 
+#### Subscribe to Queue
+
+```ws
+  GET /ws/v1/amqp/queue/${queueName}
+```
+
+| Parameter   | Type     | Description                                     |
+|:------------| :------- |:------------------------------------------------|
+| `queueName` | `string` | **Required**. Queue name to retrieve message(s) |
+
+
 ## Installation
 
 Coming soon.
