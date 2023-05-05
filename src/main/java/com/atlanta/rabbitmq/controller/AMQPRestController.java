@@ -20,6 +20,12 @@ public class AMQPRestController {
         this.rabbitQueueServiceImpl = rabbitQueueServiceImpl;
     }
 
+    // http://localhost:8080/api/v1/amqp/ping
+    @GetMapping("/ping")
+    public ResponseEntity<String> ping() {
+        return ResponseEntity.ok("Ping received ...");
+    }
+
     // http://localhost:8080/api/v1/amqp/addQueue?queueName=queueName
     @GetMapping("/addQueue")
     public ResponseEntity<String> addQueue(@RequestParam("queueName") String queueName) {
